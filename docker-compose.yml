@@ -2,7 +2,7 @@ version: "3"
 services:
   web:
     # replace username/repo:tag with your name and image details
-    image: jojo915/get-started:part1
+    image: jojo915/get-start:part1
     deploy:
       replicas: 5
       resources:
@@ -13,6 +13,15 @@ services:
         condition: on-failure
     ports:
       - "80:80"
+    networks:
+      - webnet
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data:/data
+      # 
     networks:
       - webnet
 networks:
